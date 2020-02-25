@@ -41,7 +41,10 @@ ORDER BY COUNT(PaymentTypeID) ASC
 
 -- 3. Select the average Mark for each studentID. Display the StudentId and their average mark
 -- TODO: Student Answer Here....
-
+SELECT	StudentId, AVG(Mark) AS 'Average Mark'
+FROM	Registration
+Group by StudentID
+Order by AVG(Mark) ASC
 -- 4. Select the same data as question 3 but only show the studentID's and averages that are > 80
 SELECT StudentID,
        AVG(Mark) AS 'Avg Mark'
@@ -74,21 +77,49 @@ GROUP BY PaymentTypeID
 
 -- 8. How many students are there in each club? Show the clubID and the count
 -- TODO: Student Answer Here....
-
+SELECT	ClubId, COUNT(StudentID)
+FROM	Activity
+GROUP BY ClubId
 -- Check your answer by manually grouping students by their club membership and counting them
 SELECT  ClubId, StudentID
 FROM    Activity
 
 -- 9. Which clubs have 3 or more students in them?
 -- TODO: Student Answer Here....
-
+SELECT	ClubId, COUNT(StudentID)
+FROM	Activity
+GROUP BY ClubId
+HAVING COUNT(StudentID)>=3
 
 --10. Grouping the courses by the number of hours in each course, what is the average cost of those courses? Display the course hours and the average cost.
+SELECT	CourseHours, AVG(CourseCost)
+FROM	Course
+GROUP BY CourseHours
+
 
 --11. Which teachers are getting the best results from the courses they teach? Display the staff ID and the average course mark, sorted by the course mark from highest to lowest.
+select	 AVG(Mark) AS 'average mark'
+FROM	Registration
+Group by StaffID
+
+
 
 --12. How many male and female students do we have?
+SELECT COUNT(StudentID)
+from Student
+Where Gender = 'M'
+SELECT COUNT(StudentID)
+from Student
+Where Gender = 'F'
 
 --13. Show the average balance owing for male and female students.
-
+SELECT BalanceOwing
+from Student
+Where Gender = 'M'
+SELECT COUNT(StudentID), AVG(BalanceOwing)
+from Student
+Where Gender = 'F'
 --14. How many students participate in school clubs? Display the club id and the number of students. (Hint: You should be using the Activity table for this question.)
+select ClubId, COUNT(StudentID)
+FROM Activity
+group by ClubId
