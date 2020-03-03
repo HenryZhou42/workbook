@@ -63,8 +63,12 @@ VALUES ('START', 'Small Tech And Research Teams'),
 -- 4. In your web browser, use https://randomuser.me/ to get information on three
 --    people to add as new students. Write separate insert statement for each new student.
 -- TODO: Student Answer Here....
-
+INSERT INTO Student(FirstName, LastName, Gender, StreetAddress, Birthdate)
+Values ('Reginald', 'Sims', 'M', '5326 W Pecan St', '1976/8/3')
 
 -- 5. Enroll each of the students you've added into the DMIT777 course.
 --    Use 'Dan Gilleland' as the instructor. At this point, their marks should be NULL.
 -- TODO: Student Answer Here....
+
+INSERT INTO Registration(StudentID, CourseId, StaffID)
+Values ((Select StudentID from Student WHERE FirstName = 'Reginald'), 'DMIT777',(SELECT StaffID FROM Staff WHERE FirstName = 'Dan' ))
